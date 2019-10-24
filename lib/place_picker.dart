@@ -99,7 +99,7 @@ class PlacePickerState extends State<PlacePicker> {
   /// Overlay to display autocomplete suggestions
   OverlayEntry overlayEntry;
 
-  List<NearbyPlace> nearbyPlaces = List();
+  List<NearbyPlace> nearbyPlaces = [];
 
   /// Session token required for autocomplete API call
   String sessionToken = Uuid().generateV4();
@@ -304,7 +304,7 @@ class PlacePickerState extends State<PlacePicker> {
     http.get(endpoint).then((response) {
       if (response.statusCode == 200) {
         Map<String, dynamic> data = jsonDecode(response.body);
-        List<dynamic> predictions = data['predictions'];
+        List<dynamic> predictions = data['predictions'] ?? [];
 
         List<RichSuggestion> suggestions = [];
 
